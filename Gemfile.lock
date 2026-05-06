@@ -80,6 +80,10 @@ GEM
       mutex_m
       securerandom (>= 0.3)
       tzinfo (~> 2.0)
+    acts_as_api (1.0.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      rack (>= 1.1.0)
     base64 (0.3.0)
     benchmark (0.5.0)
     bigdecimal (4.1.1)
@@ -239,6 +243,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  acts_as_api (~> 1.0, >= 1.0.1)
   bootsnap
   debug
   pg (~> 1.1)

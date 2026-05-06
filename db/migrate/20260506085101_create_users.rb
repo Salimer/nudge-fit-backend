@@ -1,0 +1,19 @@
+class CreateUsers < ActiveRecord::Migration[7.1]
+  def change
+    create_table :users do |t|
+      t.string :firebase_uid
+      t.string :email
+      t.string :name
+      t.string :avatar_url
+      t.string :subscription_tier
+      t.text :north_star_goal
+      t.string :coach_tone
+      t.string :workout_style
+      t.string :equipment
+
+      t.timestamps
+    end
+    add_index :users, :firebase_uid, unique: true
+    add_index :users, :email, unique: true
+  end
+end
