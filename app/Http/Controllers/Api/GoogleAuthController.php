@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Laravel\Socialite\Socialite;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
+use Log;
 
 class GoogleAuthController extends Controller
 {
     public function login(Request $request)
     {
         $request->validate([
-            'access_token' => 'required|string'
+            'access_token' => 'required|string',
         ]);
 
-        try{
-            $googleUser = Socialite::driver('googled')->user();
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->userFromToken($request->access_token);
 
             $user = User::UpdateOrCreate([
                 'email' => $googleUser->getEmail(),
@@ -24,10 +25,22 @@ class GoogleAuthController extends Controller
                 'name' => $googleUser->getName(),
                 'google_id' => $googleUser->getId(),
                 'email_verified_at' => now(),
-            ]); 
+            ]);
 
             $token = $user->createToken('nudge-fit-auth-token')->plainTextToken;
 
+            return response()->json([
+                'token' => $token,
+                'user' => $user,
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Google Auth Error: '.$e->getMessage());
+
+            return response()->json([
+                'message' => 'Unauthorized',
+
+            ], status: 401);
         }
     }
 }
