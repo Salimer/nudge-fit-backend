@@ -24,6 +24,7 @@ class GoogleAuthController extends Controller
             ], [
                 'name' => $googleUser->getName(),
                 'google_id' => $googleUser->getId(),
+                'email' => $googleUser->getEmail(),
                 'email_verified_at' => now(),
             ]);
 
