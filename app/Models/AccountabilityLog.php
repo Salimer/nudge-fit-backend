@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -11,8 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $target_date
  * @property bool $conquered
  * @property string|null $logged_excuse
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog query()
@@ -24,9 +25,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog whereTargetDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ScheduledNudge> $scheduledNudges
+ * @property-read int|null $scheduled_nudges_count
+ * @property-read \App\Models\User $user
  * @mixin \Eloquent
  */
 class AccountabilityLog extends Model
 {
-    //
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function scheduledNudges()
+    {
+        return $this->hasMany(ScheduledNudge::class);
+    }
 }

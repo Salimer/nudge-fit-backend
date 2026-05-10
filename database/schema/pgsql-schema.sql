@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict xcbYsKMmvct6hjrkZxiAhBZrABde10JaIdpbAF3NQ3xEMEkqBhjcIncGhntcq9a
+\restrict gbkeHS4f9i0dY8uH96pR5DD6LCMMBRD3CbLsnHmmQLDeVj5PiAhGR6Nuej25AvS
 
 -- Dumped from database version 15.17 (Homebrew)
 -- Dumped by pg_dump version 15.17 (Homebrew)
@@ -496,7 +496,8 @@ CREATE TABLE public.users (
     avatar_url character varying(255),
     subscription_tier character varying(255) DEFAULT 'free'::character varying NOT NULL,
     timezone character varying(64) DEFAULT 'UTC'::character varying NOT NULL,
-    fcm_token character varying(255)
+    fcm_token character varying(255),
+    locale character varying(255) DEFAULT 'en'::character varying NOT NULL
 );
 
 
@@ -1004,13 +1005,13 @@ ALTER TABLE ONLY public.workout_details
 -- PostgreSQL database dump complete
 --
 
-\unrestrict xcbYsKMmvct6hjrkZxiAhBZrABde10JaIdpbAF3NQ3xEMEkqBhjcIncGhntcq9a
+\unrestrict gbkeHS4f9i0dY8uH96pR5DD6LCMMBRD3CbLsnHmmQLDeVj5PiAhGR6Nuej25AvS
 
 --
 -- PostgreSQL database dump
 --
 
-\restrict udrFpbQjGdVtg8PGc9pWYlOrnpeznYlnk2YCXvLrdqiKNbrzCedaI9ak8xi02uK
+\restrict YJzrYlcyV44QutV4U0wtaOz1j1SvTUQLdjBf3thApGqk3UPPYQ8MjRPEDByC35c
 
 -- Dumped from database version 15.17 (Homebrew)
 -- Dumped by pg_dump version 15.17 (Homebrew)
@@ -1045,6 +1046,7 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 12	2026_05_10_103740_create_days_table	5
 13	2026_05_10_103756_create_scheduled_nudges_table	5
 14	2026_05_10_103808_create_goals_table	5
+15	2026_05_10_133641_add_locale_to_users_table	6
 \.
 
 
@@ -1052,12 +1054,12 @@ COPY public.migrations (id, migration, batch) FROM stdin;
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.migrations_id_seq', 14, true);
+SELECT pg_catalog.setval('public.migrations_id_seq', 15, true);
 
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict udrFpbQjGdVtg8PGc9pWYlOrnpeznYlnk2YCXvLrdqiKNbrzCedaI9ak8xi02uK
+\unrestrict YJzrYlcyV44QutV4U0wtaOz1j1SvTUQLdjBf3thApGqk3UPPYQ8MjRPEDByC35c
 

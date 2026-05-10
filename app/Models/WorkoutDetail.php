@@ -22,9 +22,27 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|WorkoutDetail whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|WorkoutDetail whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|WorkoutDetail whereWorkoutStyle($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Goal> $goals
+ * @property-read int|null $goals_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SkippingExcuse> $skippingExcuses
+ * @property-read int|null $skipping_excuses_count
+ * @property-read \App\Models\User $user
  * @mixin \Eloquent
  */
 class WorkoutDetail extends Model
 {
-    //
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function skippingExcuses()
+    {
+        return $this->hasMany(SkippingExcuse::class);
+    }
+
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
 }
