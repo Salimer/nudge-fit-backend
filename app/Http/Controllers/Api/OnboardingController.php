@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Enums\Locales;
+use App\Enums\LocalesEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOnboardingData;
 use App\Models\Contract;
@@ -23,7 +23,7 @@ class OnboardingController extends Controller
                 // 1. Update the user
                 $user->update([
                     'timezone' => $data['timezone'],
-                    'locale' => $data['locale'] == 'ar' ? Locales::Arabic : Locales::English,
+                    'locale' => $data['locale'] == 'ar' ? LocalesEnum::Arabic : LocalesEnum::English,
                 ]);
 
                 // 2. Setup the contract

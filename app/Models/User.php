@@ -16,7 +16,7 @@ use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
 use App\Enums\SubscriptionTiers;
-use App\Enums\Locales;
+use App\Enums\LocalesEnum;
 
 /**
  * @property int $id
@@ -79,7 +79,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'subscription_tier' => SubscriptionTiers::class,
-            'locale' => Locales::class,
+            'locale' => LocalesEnum::class,
         ];
     }
 

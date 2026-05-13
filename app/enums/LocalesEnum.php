@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Locales: string
+enum LocalesEnum: string
 {
   case English = 'en';
   case Arabic = 'ar';
