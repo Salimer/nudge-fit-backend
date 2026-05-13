@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,7 +21,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|SkippingExcuse whereWorkoutDetailId($value)
  * @mixin \Eloquent
  */
+#[Guarded([])]
 class SkippingExcuse extends Model
 {
-    //
+    public function workoutDetail()
+    {
+        return $this->belongsTo(WorkoutDetail::class);
+    }
 }

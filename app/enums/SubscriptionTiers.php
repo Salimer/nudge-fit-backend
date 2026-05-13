@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum SubscriptionTier: string
+enum SubscriptionTiers: string
 {
   case Free = 'free';
   case Pro = 'pro';

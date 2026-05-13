@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +23,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Contract whereUserId($value)
  * @mixin \Eloquent
  */
+
+#[Guarded([])]
 class Contract extends Model
 {
-    //
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function days()
+    {
+        return $this->hasMany(Day::class);
+    }
+
+    public function accountabilityLogs()
+    {
+        return $this->hasMany(AccountabilityLog::class);
+    }
 }

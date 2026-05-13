@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\User $user
  * @mixin \Eloquent
  */
+#[Guarded([])]
 class WorkoutDetail extends Model
 {
     public function user()

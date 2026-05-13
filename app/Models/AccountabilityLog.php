@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -30,11 +31,18 @@ use Illuminate\Support\Carbon;
  * @property-read \App\Models\User $user
  * @mixin \Eloquent
  */
+
+#[Guarded([])]
 class AccountabilityLog extends Model
 {
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
     }
 
     public function scheduledNudges()

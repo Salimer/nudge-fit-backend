@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Guarded;
+
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,7 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Day whereUpdatedAt($value)
  * @mixin \Eloquent
  */
+#[Guarded([])]
 class Day extends Model
 {
-    //
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
 }

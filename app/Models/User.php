@@ -15,7 +15,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
-use App\Enums\SubscriptionTier;
+use App\Enums\SubscriptionTiers;
+use App\Enums\Locales;
 
 /**
  * @property int $id
@@ -60,7 +61,7 @@ use App\Enums\SubscriptionTier;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereLocale($value)
  * @mixin \Eloquent
  */
-#[Fillable(['name', 'email', 'google_id', 'avatar_url', 'subscription_tier', 'timezone', 'fcm_token'])]
+#[Fillable(['name', 'email', 'email_verified_at', 'google_id', 'avatar_url', 'subscription_tier', 'timezone', 'fcm_token', 'locale'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -77,7 +78,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'subscription_tier' => SubscriptionTier::class,
+            'subscription_tier' => SubscriptionTiers::class,
+            'locale' => Locales::class,
         ];
     }
 
