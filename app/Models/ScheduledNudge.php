@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Enums\NudgeStatusEnum;
 use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * @property int $id
@@ -15,8 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $push_body
  * @property string $sender_name
  * @property string $in_app_message
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduledNudge newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduledNudge newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduledNudge query()
@@ -31,11 +34,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduledNudge whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduledNudge whereTargetTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ScheduledNudge whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 #[Guarded([])]
 class ScheduledNudge extends Model
 {
+    protected function casts(): array
+    {
+        return [
+            'status' => NudgeStatusEnum::class,
+
+        ];
+    }
+
     public function accountabilityLog()
     {
         return $this->belongsTo(AccountabilityLog::class);

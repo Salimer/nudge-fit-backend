@@ -52,6 +52,9 @@ class OnboardingController extends Controller
                 ]);
 
                 // 5. Attach goals to workout details
+                // Delete existing goals
+                $workoutDetail->goals()->delete();
+                
                 $goalsData = collect($data['goals'])
                     ->map(fn ($goal) => ['goal' => $goal])
                     ->toArray();
@@ -59,6 +62,9 @@ class OnboardingController extends Controller
                 $workoutDetail->goals()->createMany($goalsData);
 
                 // 6. Attach skipping excuses to workout details
+                // Delete existing excuses
+                $workoutDetail->skippingExcuses()->delete();
+
                 $excusesData = collect($data['excuses'])
                     ->map(fn ($excuse) => ['excuse' => $excuse])
                     ->toArray();
@@ -75,8 +81,8 @@ class OnboardingController extends Controller
             Log::error("Onboarding failed for user {$request->user()->id}: ".$e->getMessage());
 
             // 2. Send a safe, clean JSON response to Flutter
-            return response()->json([
-                'message' => 'We hit a sang setting up your profile. Please try again.',
+            return response()->json([ 
+                'message' => __('http-statuses.500'),
                 // optional: Only send the raw error text if the app is in local dev mode
                 'debug_error' => config('app.debug') ? $e->getMessage() : null,
             ], status: 500);

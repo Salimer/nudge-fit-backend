@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\database\Eloquent\Attributes\Guarded;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -15,6 +16,7 @@ use Illuminate\Support\Carbon;
  * @property string|null $logged_excuse
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog query()
@@ -26,15 +28,23 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog whereTargetDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|AccountabilityLog whereUserId($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ScheduledNudge> $scheduledNudges
+ *
+ * @property-read Collection<int, ScheduledNudge> $scheduledNudges
  * @property-read int|null $scheduled_nudges_count
- * @property-read \App\Models\User $user
+ * @property-read User $user
+ *
  * @mixin \Eloquent
  */
-
 #[Guarded([])]
 class AccountabilityLog extends Model
 {
+    protected function casts(): array
+    {
+        return [
+
+        ];
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -34,7 +34,7 @@ class StoreOnboardingData extends FormRequest
 
             'workout_style' => ['required', 'string'],
 
-            'workout_equipment' => ['required', 'string'],
+            'equipment' => ['required', 'string'],
 
             'days' => ['required', 'array'],
             'days.*' => ['required', 'string'],

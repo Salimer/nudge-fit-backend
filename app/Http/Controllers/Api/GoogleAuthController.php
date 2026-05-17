@@ -26,6 +26,7 @@ class GoogleAuthController extends Controller
                 'google_id' => $googleUser->getId(),
                 'email' => $googleUser->getEmail(),
                 'email_verified_at' => now(),
+                'avatar_url' => $googleUser->getAvatar(),
             ]);
 
             $token = $user->createToken('nudge-fit-auth-token')->plainTextToken;
